@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  nextjs:
+    container_name: nextjs
+    build:
+      context: .
+      dockerfile: ./.docker/nextjs/Dockerfile
+    restart: unless-stopped
+    ports:
+      - 80:3000
+    volumes:
+      - ./src:/app
+    working_dir: /app
+    command: bash -c "yarn install && yarn dev"
